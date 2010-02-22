@@ -1,0 +1,12 @@
+AddCharset UTF-8 .html
+Options +Indexes
+
+# Redirect some old URIs that people still link to
+
+Redirect permanent /dolt.html http://dorward.me.uk/software/dolt/
+Redirect permanent /g/dolt.html http://dorward.me.uk/software/dolt/
+Redirect permanent /g/dolt.htm http://dorward.me.uk/software/dolt/
+
+
+ErrorDocument 404 /errors/404.php
+
