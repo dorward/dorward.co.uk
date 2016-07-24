@@ -10,3 +10,4 @@ MANIFEST
 *.swp
 /node_modules
 /build
+/bower_components

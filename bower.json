@@ -1,0 +1,21 @@
+{
+  "name": "dorward.co.uk",
+  "description": "David Dorward's homepage",
+  "main": "index.js",
+  "authors": [
+    "David Dorward <david@dorward.me.uk>"
+  ],
+  "license": "None",
+  "homepage": "https://github.com/dorward/dorward.co.uk",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2"
+  }
+}
