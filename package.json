@@ -21,9 +21,13 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-changed": "^1.3.0",
     "gulp-concat": "^2.6.0",
+    "gulp-html-ssi": "0.0.92",
     "gulp-imagemin": "^3.0.2",
+    "gulp-inject": "^4.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-minify-html": "^1.0.6",
-    "gulp-responsive": "^2.4.0"
+    "gulp-responsive": "^2.4.0",
+    "gulp-svgmin": "^1.2.2",
+    "gulp-svgstore": "^6.0.0"
   }
 }

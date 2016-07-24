@@ -1,0 +1,10 @@
+.social-links li {
+	text-align: center;
+}
+
+.icon {
+	width: 30px;
+	height: 30px;
+}
+
+.symbols { display: none; }
