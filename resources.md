@@ -23,3 +23,7 @@
         <rect width='500' height='500' filter="url(#n)" opacity='0.4'/>
     </svg>
     
+
+# Responsive images
+
+https://www.npmjs.com/package/gulp-responsive/
