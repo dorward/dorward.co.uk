@@ -1,4 +1,4 @@
-=head1 dorward.co.uk project
+# dorward.co.uk project
 
 Having rebuilt this after accidently blasting it away with a poor 
 download-upload, and taking some inspiration from Tim Huegdon, it
