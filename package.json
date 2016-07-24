@@ -23,6 +23,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^3.0.2",
     "gulp-minify-css": "^1.2.4",
-    "gulp-minify-html": "^1.0.6"
+    "gulp-minify-html": "^1.0.6",
+    "gulp-responsive": "^2.4.0"
   }
 }
