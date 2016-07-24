@@ -35,8 +35,8 @@ gulp.task('imagemin', function() {
 		.pipe(changed(imgDst))
 		.pipe(responsive({
 			'*.jpeg': {
-				width: 300,
-				rename: { suffix: '-300' },
+				width: 280,
+				rename: { suffix: '-280' },
 			},
 		}, {
 			quality: 70, // The output quality for JPEG, WebP and TIFF output formats
