@@ -16,63 +16,63 @@ var svgstore = require('gulp-svgstore');
 // default gulp task
 gulp.task('default', ['imagemin', 'htmlpage', 'styles'], function() {
 
-	gulp.watch('./src/*.html', function() {
-		gulp.run('htmlpage');
-	});
+    gulp.watch('./src/*.html', function() {
+        gulp.run('htmlpage');
+    });
 
-	// watch for JS changes
-	gulp.watch('./src/scripts/*.js', function() {
-		gulp.run('jshint', 'scripts');
-	});
+    // watch for JS changes
+    gulp.watch('./src/scripts/*.js', function() {
+        gulp.run('jshint', 'scripts');
+    });
 
-	// watch for CSS changes
-	gulp.watch('./src/styles/*.css', function() {
-		gulp.run('styles');
-	});
+    // watch for CSS changes
+    gulp.watch('./src/styles/*.css', function() {
+        gulp.run('styles');
+    });
 
 });
 
 // minify and resize new images
 gulp.task('imagemin', function() {
-	var imgSrc = './src/images/**/*.jpeg',
-		imgDst = './build/images';
+    var imgSrc = './src/images/**/*.jpeg',
+        imgDst = './build/images';
 
-	gulp.src(imgSrc)
-		.pipe(changed(imgDst))
-		.pipe(responsive({
-			'*.jpeg': {
-				width: 280,
-				rename: { suffix: '-280' },
-			},
-		}, {
-			quality: 70, // The output quality for JPEG, WebP and TIFF output formats
-			progressive: true,
-			compressionLevel: 6, // Zlib compression level of PNG output format
-			withMetadata: false,
-		}))
-		.pipe(imagemin())
-		.pipe(gulp.dest(imgDst));
+    gulp.src(imgSrc)
+        .pipe(changed(imgDst))
+        .pipe(responsive({
+            '*.jpeg': {
+                width: 280,
+                rename: { suffix: '-280' },
+            },
+        }, {
+            quality: 70, // The output quality for JPEG, WebP and TIFF output formats
+            progressive: true,
+            compressionLevel: 6, // Zlib compression level of PNG output format
+            withMetadata: false,
+        }))
+        .pipe(imagemin())
+        .pipe(gulp.dest(imgDst));
 });
 
 // SVG image
 gulp.task('htmlpage', function() {
 
-	var htmlSrc = './src/*.html';
-	var htmlDst = './build';
+    var htmlSrc = './src/*.html';
+    var htmlDst = './build';
     var svgs = gulp
         .src('./src/images/icons/*.svg')
         .pipe(svgstore({ inlineSvg: true }));
 
 
-    function fileContents (filePath, file) {
+    function fileContents(filePath, file) {
         return file.contents.toString();
     }
 
-	return gulp.src(htmlSrc)
-		.pipe(changed(htmlDst))
-		.pipe(inject(svgs, { transform: fileContents }))
-		.pipe(minifyHTML())
-		.pipe(gulp.dest(htmlDst));
+    return gulp.src(htmlSrc)
+        .pipe(changed(htmlDst))
+        .pipe(inject(svgs, { transform: fileContents }))
+        // .pipe(minifyHTML()) // Appears to remove empty alt attributes
+        .pipe(gulp.dest(htmlDst));
 
 });
 
@@ -91,9 +91,9 @@ gulp.task('htmlpage', function() {
 
 // CSS concat, auto-prefix and minify
 gulp.task('styles', function() {
-	gulp.src(['./bower_components/bootstrap/dist/css/bootstrap.min.css', './src/styles/*.css'])
-		.pipe(concat('styles.css'))
-		.pipe(autoprefix('last 2 versions'))
-		.pipe(minifyCSS())
-		.pipe(gulp.dest('./build/styles/'));
+    gulp.src(['./src/styles/*.css'])
+        .pipe(concat('styles.css'))
+        .pipe(autoprefix('last 2 versions'))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest('./build/styles/'));
 });
