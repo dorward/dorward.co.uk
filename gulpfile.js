@@ -1,99 +1,72 @@
-var gulp = require('gulp');
-var autoprefix = require('gulp-autoprefixer');
-var changed = require('gulp-changed');
-var concat = require('gulp-concat');
-var imagemin = require('gulp-imagemin');
-var inject = require('gulp-inject');
-//var includer = require('gulp-html-ssi');
-var minifyCSS = require('gulp-minify-css');
-var minifyHTML = require('gulp-minify-html');
-var responsive = require("gulp-responsive");
-var svgmin = require('gulp-svgmin');
-var svgstore = require('gulp-svgstore');
+const {parallel, watch, src, dest} = require("gulp"),
+    autoprefix = require("gulp-autoprefixer"),
+    changed = require("gulp-changed"),
+    concat = require("gulp-concat"),
+    imagemin = require("gulp-imagemin"),
+    inject = require("gulp-inject"),
+    minifyCSS = require("gulp-minify-css"),
+    responsive = require("gulp-responsive"),
+    svgstore = require("gulp-svgstore"),
+    cssSrc = "./src/styles/*.css",
+    htmlSrc = "./src/*.html",
+    svgSrc = "./src/images/icons/*.svg",
+    imgSrc = "./src/images/**/*.jpeg";
 
+function fileContents(...args) {
+    const file = 1;
 
+    return args[file].contents.toString(); 
+}
 
-// default gulp task
-gulp.task('default', ['imagemin', 'htmlpage', 'styles'], function() {
+function images() {
+    const imgDst = "./build/images/";
 
-    gulp.watch('./src/*.html', function() {
-        gulp.run('htmlpage');
-    });
-
-    // watch for JS changes
-    gulp.watch('./src/scripts/*.js', function() {
-        gulp.run('jshint', 'scripts');
-    });
-
-    // watch for CSS changes
-    gulp.watch('./src/styles/*.css', function() {
-        gulp.run('styles');
-    });
-
-});
-
-// minify and resize new images
-gulp.task('imagemin', function() {
-    var imgSrc = './src/images/**/*.jpeg',
-        imgDst = './build/images';
-
-    gulp.src(imgSrc)
-        .pipe(changed(imgDst))
-        .pipe(responsive({
-            '*.jpeg': {
-                width: 280,
-                rename: { suffix: '-280' },
-            },
+    return src(imgSrc).
+        pipe(imagemin()).
+        pipe(responsive({
+            "*.jpeg": {
+                "rename": {"suffix": "-280"},
+                "width": 280
+            }
         }, {
-            quality: 70, // The output quality for JPEG, WebP and TIFF output formats
-            progressive: true,
-            compressionLevel: 6, // Zlib compression level of PNG output format
-            withMetadata: false,
-        }))
-        .pipe(imagemin())
-        .pipe(gulp.dest(imgDst));
-});
+            // zlib compression level of PNG output format
+            "compressionLevel": 6, 
+            "progressive": true,
+            // the output quality for JPEG, WebP and TIFF output formats
+            "quality": 70, 
+            "withMetadata": false
+        })).
+        pipe(dest(imgDst));
+}
 
-// SVG image
-gulp.task('htmlpage', function() {
+function styles() {
+    return src([cssSrc]).
+        pipe(concat("styles.css")).
+        pipe(autoprefix("last 2 versions")).
+        pipe(minifyCSS()).
+        pipe(dest("./build/styles/"));
+}
 
-    var htmlSrc = './src/*.html';
-    var htmlDst = './build';
-    var svgs = gulp
-        .src('./src/images/icons/*.svg')
-        .pipe(svgstore({ inlineSvg: true }));
+function page() {
+    const htmlDst = "./build",
+        svgs = src(svgSrc).
+            pipe(svgstore({"inlineSvg": true}));
+    
+    return src(htmlSrc).
+        pipe(changed(htmlDst)).
+        pipe(inject(svgs, {"transform": fileContents})).
+        pipe(dest(htmlDst));
 
+}
 
-    function fileContents(filePath, file) {
-        return file.contents.toString();
-    }
+const defaultTask = parallel(images, styles, page);
 
-    return gulp.src(htmlSrc)
-        .pipe(changed(htmlDst))
-        .pipe(inject(svgs, { transform: fileContents }))
-        // .pipe(minifyHTML()) // Appears to remove empty alt attributes
-        .pipe(gulp.dest(htmlDst));
+function watchTask() {
+    watch(htmlSrc, page);
+    watch(svgSrc, page);
+    watch(imgSrc, images);
+    watch(cssSrc, styles);
+}
 
-});
-
-
-// // minify new or changed HTML pages
-// gulp.task('htmlpage', function() {
-// 	var htmlSrc = './src/*.html',
-// 		htmlDst = './build';
-
-// 	gulp.src(htmlSrc)
-// 		.pipe(changed(htmlDst))
-// 		.pipe(includer())
-// 		.pipe(minifyHTML())
-// 		.pipe(gulp.dest(htmlDst));
-// });
-
-// CSS concat, auto-prefix and minify
-gulp.task('styles', function() {
-    gulp.src(['./src/styles/*.css'])
-        .pipe(concat('styles.css'))
-        .pipe(autoprefix('last 2 versions'))
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('./build/styles/'));
-});
+exports.default = defaultTask;
+exports.watch = watchTask;
