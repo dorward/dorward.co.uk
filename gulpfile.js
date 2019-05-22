@@ -1,11 +1,12 @@
 const {parallel, watch, src, dest} = require("gulp"),
     autoprefix = require("gulp-autoprefixer"),
     changed = require("gulp-changed"),
+    cleanCSS = require("gulp-clean-css"),
     concat = require("gulp-concat"),
     imagemin = require("gulp-imagemin"),
     inject = require("gulp-inject"),
-    minifyCSS = require("gulp-minify-css"),
     responsive = require("gulp-responsive"),
+    sourcemaps = require('gulp-sourcemaps'),
     svgstore = require("gulp-svgstore"),
     cssSrc = "./src/styles/*.css",
     htmlSrc = "./src/*.html",
@@ -41,9 +42,11 @@ function images() {
 
 function styles() {
     return src([cssSrc]).
+        pipe(sourcemaps.init()).
         pipe(concat("styles.css")).
         pipe(autoprefix("last 2 versions")).
-        pipe(minifyCSS()).
+        pipe(cleanCSS()).
+        pipe(sourcemaps.write("../maps")).
         pipe(dest("./build/styles/"));
 }
 
