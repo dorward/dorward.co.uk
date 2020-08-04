@@ -4,7 +4,8 @@
 	"description": "David Dorward's homepage",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "gulp",
+		"deploy": "scp -r build/* dorward.co.uk:/hosts/dorward.co.uk/pages/"
 	},
 	"repository": {
 		"type": "git",
