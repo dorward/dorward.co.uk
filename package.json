@@ -11,9 +11,6 @@
 		"type": "git",
 		"url": "git+https://github.com/dorward/dorward.co.uk.git"
 	},
-	"engines": {
-		"node": "<11.0.0"
-	},
 	"author": "David Dorward <david@dorward.me.uk>",
 	"license": "ISC",
 	"bugs": {
@@ -23,19 +20,19 @@
 	"devDependencies": {
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^8.0.0",
-		"gulp-changed": "^4.0.2",
+		"gulp-changed": "^4.0.3",
 		"gulp-clean-css": "^4.3.0",
 		"gulp-concat": "^2.6.1",
 		"gulp-html-ssi": "0.0.92",
-		"gulp-imagemin": "^7.1.0",
+		"gulp-imagemin": "^8.0.0",
 		"gulp-inject": "^5.0.5",
 		"gulp-minify-html": "^1.0.6",
 		"gulp-responsive": "^3.0.1",
-		"gulp-svgmin": "^3.0.0",
-		"gulp-svgstore": "^7.0.1"
+		"gulp-svgmin": "^4.1.0",
+		"gulp-svgstore": "^9.0.0"
 	},
 	"dependencies": {
-		"gulp-sourcemaps": "^2.6.5",
-		"imagemin": "^7.0.1"
+		"gulp-sourcemaps": "^3.0.0",
+		"imagemin": "^8.0.1"
 	}
 }
