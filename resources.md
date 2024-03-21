@@ -1,7 +1,7 @@
 # Background Textures
 
-* https://philiprogers.com/svgpatterns/#carbonfiber
-* https://developer.mozilla.org/en-US/docs/Web/API/Body/json
+- <https://philiprogers.com/svgpatterns/#carbonfiber>
+- <https://developer.mozilla.org/en-US/docs/Web/API/Body/json>
 
 ## Carbon
 
@@ -22,8 +22,3 @@
         <rect width='500' height='500' fill='#FCFBE3'/>
         <rect width='500' height='500' filter="url(#n)" opacity='0.4'/>
     </svg>
-    
-
-# Responsive images
-
-https://www.npmjs.com/package/gulp-responsive/
