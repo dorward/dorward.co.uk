@@ -2,6 +2,12 @@
 
 This is my micro-CV page.
 
-## Deployment
+## Build
 
-Copy to the web server using scp
+```
+npm run build
+```
+
+## Deploy
+
+Copy to the web server using scp. Use `deploy.sh` (protected by .gitignore)

@@ -1,0 +1,1 @@
+scp -r dist/* dist/.htaccess malt.us-lot.org:/hosts/dorward.co.uk/pages/
