@@ -2,11 +2,15 @@
 	"name": "dorward.co.uk",
 	"version": "4.0.0",
 	"description": "Work profile landing page",
+	"browserslist": "defaults",
 	"scripts": {
+		"start": "npx parcel src/index.html",
+		"build": "npx parcel build src/index.html",
 		"stylelint": "npx stylelint '**/*.css'"
 	},
 	"author": "David Dorward <david@dorward.me.uk>",
 	"devDependencies": {
+		"parcel": "^2.12.0",
 		"stylelint": "^16.2.1",
 		"stylelint-config-standard": "^36.0.0"
 	}

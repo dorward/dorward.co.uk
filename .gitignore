@@ -10,3 +10,5 @@ MANIFEST
 *.swp
 /node_modules
 /build
+/dist
+/.parcel-cache
