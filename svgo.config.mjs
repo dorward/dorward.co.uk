@@ -1,5 +1,3 @@
-// Reset SVGO to default to avoid lots of warnings being generated because there's a mismatch between Parcel's default config and the version of SVGO used
-
 export default {
 	multipass: false, // boolean
 	datauri: 'base64', // 'base64'|'enc'|'unenc'
@@ -20,3 +18,7 @@ export default {
 		},
 	],
 };
+
+/* Reset SVGO to default to avoid lots of warnings being generated because there's a
+   mismatch between Parcel's default config and the version of SVGO used
+ */

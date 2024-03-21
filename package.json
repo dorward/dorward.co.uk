@@ -5,12 +5,14 @@
 	"browserslist": "defaults",
 	"scripts": {
 		"start": "npx parcel src/index.html",
+		"prebuild": "rimraf -v ./dist/*",
 		"build": "npx parcel build src/index.html",
 		"stylelint": "npx stylelint '**/*.css'"
 	},
 	"author": "David Dorward <david@dorward.me.uk>",
 	"devDependencies": {
 		"parcel": "^2.12.0",
+		"rimraf": "^5.0.5",
 		"stylelint": "^16.2.1",
 		"stylelint-config-standard": "^36.0.0"
 	}
