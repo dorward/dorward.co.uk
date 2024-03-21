@@ -7,10 +7,12 @@
 		"start": "npx parcel src/index.html",
 		"prebuild": "rimraf -v ./dist/*",
 		"build": "npx parcel build src/index.html",
+		"postbuild": "npx copyfiles -f src/.htaccess dist/",
 		"stylelint": "npx stylelint '**/*.css'"
 	},
 	"author": "David Dorward <david@dorward.me.uk>",
 	"devDependencies": {
+		"copyfiles": "^2.4.1",
 		"parcel": "^2.12.0",
 		"rimraf": "^5.0.5",
 		"stylelint": "^16.2.1",
