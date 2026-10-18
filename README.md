@@ -6,14 +6,14 @@ Requires Node.js 20.19+ or 22.12+ (including newer major versions).
 
 ## Development
 
-```
+```sh
 npm install
 npm start
 ```
 
 ## Lint and format
 
-```
+```sh
 npm run lint
 npm run lint:fix
 npm run format
@@ -26,7 +26,7 @@ and the dependency lockfile are excluded from formatting.
 
 ## Build
 
-```
+```sh
 npm run build
 ```
 
