@@ -11,6 +11,19 @@ npm install
 npm start
 ```
 
+## Lint and format
+
+```
+npm run lint
+npm run lint:fix
+npm run format
+npm run format:check
+```
+
+Linting runs Oxlint for JavaScript and Stylelint for source CSS. Oxfmt uses
+tabs, single quotes, and a 120-character line width. Generated build output
+and the dependency lockfile are excluded from formatting.
+
 ## Build
 
 ```

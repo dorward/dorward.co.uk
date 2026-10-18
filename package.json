@@ -6,10 +6,16 @@
 		"start": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
-		"stylelint": "npx stylelint '**/*.css'"
+		"stylelint": "stylelint 'src/**/*.css'",
+		"lint": "oxlint --deny-warnings && npm run stylelint",
+		"lint:fix": "oxlint --fix && npm run stylelint -- --fix",
+		"format": "oxfmt --write .",
+		"format:check": "oxfmt --check ."
 	},
 	"author": "David Dorward <david@dorward.me.uk>",
 	"devDependencies": {
+		"oxfmt": "^0.73.0",
+		"oxlint": "^1.88.0",
 		"stylelint": "^16.2.1",
 		"stylelint-config-standard": "^36.0.0",
 		"vite": "^8.3.4"
